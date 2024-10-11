@@ -1,5 +1,6 @@
 import { InputType } from '@/types/commonType';
 import Button from '@/common/Button';
+import styles from '@/styles/components/sign/HookForm.module.scss';
 import ableEye from '@/../../public/assets/images/ableEye.svg';
 import disableEye from '@/../../public/assets/images/disableEye.svg';
 import star from '@/../../public/assets/images/star.svg';
@@ -21,12 +22,16 @@ const Input = ({
     id || password || confirmPassword || nickName || phoneNumber;
 
   return (
-    <div>
-      <label htmlFor="user-input">
+    <div className={styles['form-content__box']}>
+      <label
+        className={styles['form-content__box__label']}
+        htmlFor="user-input"
+      >
         <p>{registerContent}</p>
         <Image src={star} alt="blue star" />
       </label>
       <input
+        className={styles['form-content__box__input']}
         {...register(registerContent as RegisterContentType, {
           required: true,
         })}
@@ -35,20 +40,22 @@ const Input = ({
         placeholder={placeholder}
       />
       {(password || confirmPassword) && (
-        <>
+        <div className={styles['form-content__box__eye']}>
           {type === 'password' ? (
             <Image src={disableEye} alt="가리기" onClick={changeType} />
           ) : (
             <Image src={ableEye} alt="보기" onClick={changeType} />
           )}
-        </>
+        </div>
       )}
       {errors?.message && (
-        <p>
+        <p className={styles['form-content__box__warnning']}>
           <span>{errors.message}</span>
         </p>
       )}
-      <Button label="중복확인" />
+      {(id || phoneNumber) && (
+        <Button id={id} phoneNumber={phoneNumber} label="중복확인" />
+      )}
     </div>
   );
 };

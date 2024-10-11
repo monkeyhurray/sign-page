@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import styles from '@/styles/components/sign/HookForm.module.scss';
 import Input from '@/common/Input';
 import Button from '@/common/Button';
 
@@ -44,8 +44,8 @@ const HookForm = ({
 
   return (
     <>
-      <h1>{label}</h1>
-      <form onSubmit={handleSubmit(signFn)}>
+      <h1 className={styles['form-title']}>{label}</h1>
+      <form className={styles['form-content']} onSubmit={handleSubmit(signFn)}>
         <Input
           register={register}
           id="id"

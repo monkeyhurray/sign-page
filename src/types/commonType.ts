@@ -13,3 +13,9 @@ export interface InputType {
   errors?: FieldError;
   changeType?: () => void;
 }
+
+export interface ButtonType {
+  id?: string;
+  phoneNumber?: string;
+  label: string;
+}

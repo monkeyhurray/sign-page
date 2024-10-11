@@ -1,17 +1,23 @@
 'use client';
 
-import HookForm from '@/components/sign/HookForm';
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+const HookFormComponent = dynamic(() => import('@/components/sign/HookForm'), {
+  suspense: true,
+});
 
 const SignUpPage = () => {
   const signUpFn = () => {};
 
   return (
-    <div>
-      <HookForm
-        signFn={signUpFn}
-        confirmPassword="confirmPassword"
-        label="회원가입"
-      />
+    <div className="sign-main">
+      <Suspense fallback={<div>Loading...</div>}>
+        <HookFormComponent
+          signFn={signUpFn}
+          confirmPassword="confirmPassword"
+          label="회원가입"
+        />
+      </Suspense>
     </div>
   );
 };
