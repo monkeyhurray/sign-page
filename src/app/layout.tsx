@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Header from '@/components/layout/Header';
 import '@/styles/style.scss';
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <Header />
         <main className="main">{children}</main>
       </body>
     </html>
